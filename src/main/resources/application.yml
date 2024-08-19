@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: home-draw
+  datasource:
+      url: jdbc:postgresql://localhost:5432/homedrawdb
+      username: homedraw
+      password: 1234homedraw
+      driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect

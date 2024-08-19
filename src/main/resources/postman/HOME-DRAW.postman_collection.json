@@ -1,0 +1,329 @@
+{
+	"info": {
+		"_postman_id": "91874c2c-a734-4ca3-b596-2fc963846ba4",
+		"name": "HOME-DRAW",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "2690010",
+		"_collection_link": "https://assert-team.postman.co/workspace/HOME-DRAW~b18daeb2-1cc3-46d6-ac8a-ce61a7481ded/collection/2690010-91874c2c-a734-4ca3-b596-2fc963846ba4?action=share&source=collection_link&creator=2690010"
+	},
+	"item": [
+		{
+			"name": "CRITERIOS",
+			"item": [
+				{
+					"name": "CREATE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"Familias com 3 ou mais dependentes\",\r\n    \"limiteInferior\": 3,\r\n    \"limiteSuperior\": 100,\r\n    \"pontuacao\": 3,\r\n    \"tipo\": \"DEPENDENTES\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/criterios",
+						"description": "Generated from cURL: curl -X POST http://localhost:8080/criterios \\\r\n     -H \"Content-Type: application/json\" \\\r\n     -d '{\r\n           \"nome\": \"Nome do Criterio\",\r\n           \"descricao\": \"Descricao do Criterio\",\r\n           \"pontuacao\": 10\r\n         }'"
+					},
+					"response": []
+				},
+				{
+					"name": "FIND-BY-ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/criterios/1",
+						"description": "Generated from cURL: curl -X GET http://localhost:8080/criterios/1"
+					},
+					"response": []
+				},
+				{
+					"name": "SINCRONIZAR",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/criterios/sincronizar",
+						"description": "Generated from cURL: curl -X GET http://localhost:8080/criterios/1"
+					},
+					"response": []
+				},
+				{
+					"name": "FIND-ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/criterios?page=0&size=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"criterios"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl -X GET \"http://localhost:8080/criterios?page=0&size=10\""
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Nome Atualizado\",\r\n    \"descricao\": \"Descricao Atualizada\",\r\n    \"pontuacao\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/criterios/1",
+						"description": "Generated from cURL: curl -X PUT http://localhost:8080/criterios/1 \\\r\n     -H \"Content-Type: application/json\" \\\r\n     -d '{\r\n           \"nome\": \"Nome Atualizado\",\r\n           \"descricao\": \"Descricao Atualizada\",\r\n           \"pontuacao\": 20\r\n         }'"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/criterios/13",
+						"description": "Generated from cURL: curl -X DELETE http://localhost:8080/criterios/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FAMILIAS",
+			"item": [
+				{
+					"name": "CREATE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pessoas\": [6]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/familias",
+						"description": "Generated from cURL: curl -X POST http://localhost:8080/pessoas \\\r\n     -H \"Content-Type: application/json\" \\\r\n     -d '{\r\n           \"nome\": \"Nome da pessoa\",\r\n           \"idade\": 30\r\n         }'"
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pessoas\": [6]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/familias/1",
+						"description": "Generated from cURL: curl -X PUT http://localhost:8080/pessoas/1 \\\r\n     -H \"Content-Type: application/json\" \\\r\n     -d '{\r\n           \"nome\": \"Novo nome da pessoa\",\r\n           \"idade\": 35\r\n         }'"
+					},
+					"response": []
+				},
+				{
+					"name": "FIND-BY-ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/familias/1",
+						"description": "Generated from cURL: curl -X GET http://localhost:8080/pessoas/1"
+					},
+					"response": []
+				},
+				{
+					"name": "FIND-ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/familias?page=0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"familias"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/familias/1",
+						"description": "Generated from cURL: curl -X DELETE http://localhost:8080/pessoas/1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PESSOAS",
+			"item": [
+				{
+					"name": "CREATE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Nome da pessoa\",\r\n    \"renda\": 4000,\r\n    \"idade\": 30,\r\n    \"dependente\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/pessoas",
+						"description": "Generated from cURL: curl -X POST http://localhost:8080/pessoas \\\r\n     -H \"Content-Type: application/json\" \\\r\n     -d '{\r\n           \"nome\": \"Nome da pessoa\",\r\n           \"idade\": 30\r\n         }'"
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Nome da pessoa\",\r\n    \"renda\": 4000,\r\n    \"idade\": 30,\r\n    \"dependente\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/pessoas/2",
+						"description": "Generated from cURL: curl -X PUT http://localhost:8080/pessoas/1 \\\r\n     -H \"Content-Type: application/json\" \\\r\n     -d '{\r\n           \"nome\": \"Novo nome da pessoa\",\r\n           \"idade\": 35\r\n         }'"
+					},
+					"response": []
+				},
+				{
+					"name": "FIND-BY-ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/pessoas/3",
+						"description": "Generated from cURL: curl -X GET http://localhost:8080/pessoas/1"
+					},
+					"response": []
+				},
+				{
+					"name": "FIND-ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pessoas?page=0&size=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/pessoas/1",
+						"description": "Generated from cURL: curl -X DELETE http://localhost:8080/pessoas/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
