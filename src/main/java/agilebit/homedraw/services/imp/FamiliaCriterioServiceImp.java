@@ -7,7 +7,7 @@ import agilebit.homedraw.exceptions.NotFoundFamiliaException;
 import agilebit.homedraw.repositories.CriterioRepository;
 import agilebit.homedraw.repositories.FamiliaRepository;
 import agilebit.homedraw.services.FamiliaCriterioService;
-import agilebit.homedraw.strategies.PontuacaoStrategy;
+import agilebit.homedraw.services.strategies.PontuacaoStrategy;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;

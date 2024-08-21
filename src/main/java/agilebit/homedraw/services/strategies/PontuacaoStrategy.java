@@ -1,4 +1,4 @@
-package agilebit.homedraw.strategies;
+package agilebit.homedraw.services.strategies;
 
 import agilebit.homedraw.entities.CriterioEntity;
 import agilebit.homedraw.entities.PessoaEntity;
