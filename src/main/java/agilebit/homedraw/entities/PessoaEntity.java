@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -36,8 +37,8 @@ public class PessoaEntity {
 	@Column(name = "RENDA", precision = 10, scale = 2, nullable = false)
 	private BigDecimal renda;
 	
-	@Column(name = "IDADE", length = 3, nullable = false)
-	private Integer idade;
+	@Column(name = "DATA_DE_NASCIMENTO", length = 3, nullable = false)
+	private LocalDate dataDeNascimento;
 	
 	@Column(name = "DEPENDENTE", nullable = false)
 	private Boolean dependente;

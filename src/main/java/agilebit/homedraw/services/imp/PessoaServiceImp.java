@@ -3,6 +3,7 @@ package agilebit.homedraw.services.imp;
 import agilebit.homedraw.dtos.pessoa.PessoaRequestDTO;
 import agilebit.homedraw.dtos.pessoa.PessoaResponseDTO;
 import agilebit.homedraw.dtos.pessoa.PessoaResponsePageDTO;
+import agilebit.homedraw.entities.FamiliaEntity;
 import agilebit.homedraw.entities.PessoaEntity;
 import agilebit.homedraw.exceptions.NotFoundPessoaException;
 import agilebit.homedraw.mappers.PessoaMapper;
@@ -15,6 +16,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -90,8 +93,13 @@ public class PessoaServiceImp implements PessoaService {
 		return pessoas.stream().map(this::findPessoaById).collect(Collectors.toSet());
 	}
 	
+	
 	@Override
-	public void saveAll(Set<PessoaEntity> pessoaEntities) {
-		pessoaRepository.saveAll(pessoaEntities);
+	public List<FamiliaEntity> findFamiliasWithDataDeNascimentoEqualsToCurrentDay(LocalDate currentDate) {
+		List<PessoaEntity> pessoaEntities = pessoaRepository.findAllByDataDeNascimentoEquals(currentDate);
+		return pessoaEntities.stream()
+				.map(PessoaEntity::getFamilia)
+				.distinct()
+				.toList();
 	}
 }

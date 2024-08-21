@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -13,6 +14,6 @@ public class PessoaResponseDTO {
 	private Long id;
 	private String nome;
 	private BigDecimal renda;
-	private Integer idade;
+	private LocalDate dataDeNascimento;
 	private Boolean dependente;
 }

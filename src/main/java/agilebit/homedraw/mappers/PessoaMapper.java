@@ -7,8 +7,6 @@ import agilebit.homedraw.entities.PessoaEntity;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class PessoaMapper {
 	
@@ -20,7 +18,7 @@ public class PessoaMapper {
 		return PessoaEntity.builder()
 				.nome(pessoaRequestDTO.getNome())
 				.renda(pessoaRequestDTO.getRenda())
-				.idade(pessoaRequestDTO.getIdade())
+				.dataDeNascimento(pessoaRequestDTO.getDataDeNascimento())
 				.dependente(pessoaRequestDTO.getDependente())
 				.build();
 	}
@@ -30,7 +28,7 @@ public class PessoaMapper {
 				.id(pessoaEntity.getId())
 				.nome(pessoaEntity.getNome())
 				.renda(pessoaEntity.getRenda())
-				.idade(pessoaEntity.getIdade())
+				.dataDeNascimento(pessoaEntity.getDataDeNascimento())
 				.dependente(pessoaEntity.getDependente())
 				.build();
 	}
@@ -51,9 +49,5 @@ public class PessoaMapper {
 	
 	private static List<PessoaResponseDTO> createPessoaResponseDTOList(List<PessoaEntity> content) {
 		return content.stream().map(PessoaMapper::createPessoaResponseDTO).toList();
-	}
-	
-	public static Set<PessoaEntity> createPessoaEntities(Set<PessoaRequestDTO> pessoas) {
-		return pessoas.stream().map(PessoaMapper::createPessoaEntity).collect(Collectors.toSet());
 	}
 }

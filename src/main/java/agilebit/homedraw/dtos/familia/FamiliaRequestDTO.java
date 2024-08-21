@@ -1,15 +1,12 @@
 package agilebit.homedraw.dtos.familia;
 
-import agilebit.homedraw.dtos.pessoa.PessoaRequestDTO;
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
-import java.util.List;
 import java.util.Set;
 
 @Getter
-@Setter
+@AllArgsConstructor
 public class FamiliaRequestDTO {
 	private Set<Long> pessoas;
 }

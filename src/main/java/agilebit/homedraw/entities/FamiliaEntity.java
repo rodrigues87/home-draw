@@ -14,7 +14,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.util.Set;
 
 @Getter
@@ -32,12 +31,6 @@ public class FamiliaEntity {
 	
 	@Column(name = "PONTUACAO")
 	private Integer pontuacao;
-	
-	@Column(name = "RENDA_TOTAL", precision = 10, scale = 2)
-	private BigDecimal rendaTotal;
-	
-	@Column(name = "QUANTIDADE_DEPENDENTES")
-	private Integer quantidadeDependentesAplicavel;
 	
 	@OneToMany(mappedBy = "familia")
 	private Set<PessoaEntity> pessoas;

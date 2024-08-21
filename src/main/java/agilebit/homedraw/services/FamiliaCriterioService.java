@@ -14,5 +14,5 @@ public interface FamiliaCriterioService {
 	
 	FamiliaEntity findFamiliaById(Long familiaId);
 	
-	Integer createPontuacao(Set<PessoaEntity> pessoaEntities, List<CriterioEntity> regras);
+	Integer createPontuacao(Set<PessoaEntity> pessoaEntities, List<CriterioEntity> criterios);
 }

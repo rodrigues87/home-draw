@@ -1,6 +1,5 @@
 package agilebit.homedraw.services.imp;
 
-import agilebit.homedraw.constants.CriterioTypeEnum;
 import agilebit.homedraw.entities.CriterioEntity;
 import agilebit.homedraw.entities.FamiliaEntity;
 import agilebit.homedraw.entities.PessoaEntity;
@@ -8,6 +7,7 @@ import agilebit.homedraw.exceptions.NotFoundFamiliaException;
 import agilebit.homedraw.repositories.CriterioRepository;
 import agilebit.homedraw.repositories.FamiliaRepository;
 import agilebit.homedraw.services.FamiliaCriterioService;
+import agilebit.homedraw.strategies.PontuacaoStrategy;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -16,7 +16,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -28,6 +27,7 @@ public class FamiliaCriterioServiceImp implements FamiliaCriterioService {
 	
 	final CriterioRepository criterioRepository;
 	final FamiliaRepository familiaRepository;
+	final List<PontuacaoStrategy> pontuacaoStrategies;
 	
 	@Override
 	@Async
@@ -72,39 +72,14 @@ public class FamiliaCriterioServiceImp implements FamiliaCriterioService {
 		}
 	}
 	
+	
 	@Override
-	public Integer createPontuacao(Set<PessoaEntity> pessoaEntities, List<CriterioEntity> regras) {
-		BigDecimal rendaTotal = pessoaEntities.stream().map(PessoaEntity::getRenda).reduce(BigDecimal.ZERO, BigDecimal::add);
-		BigDecimal numeroDependentes = BigDecimal.valueOf(pessoaEntities.stream().filter(pessoaEntity ->
-				pessoaEntity.getDependente() && pessoaEntity.getIdade() < 18).toList().size());
-		
-		if (!regras.isEmpty()) {
-			Integer totalPontosRenda = getTotalPontosRenda(rendaTotal, regras);
-			Integer totalPontosDependentes = getTotalPontosDependentes(numeroDependentes, regras);
-			return totalPontosRenda + totalPontosDependentes;
-		} else {
+	public Integer createPontuacao(Set<PessoaEntity> pessoaEntities, List<CriterioEntity> criterios) {
+		if (pessoaEntities == null || pessoaEntities.isEmpty() || criterios == null || criterios.isEmpty()) {
 			return 0;
 		}
-	}
-	
-	private Integer getTotalPontosDependentes(BigDecimal numeroDependentes, List<CriterioEntity> regras) {
-		return regras.stream()
-				.filter(regra -> regra.getTipo().equals(CriterioTypeEnum.DEPENDENTES))
-				.filter(regra -> (regra.getLimiteSuperior() != null
-						&& numeroDependentes.compareTo(regra.getLimiteInferior()) >= 0
-						&& numeroDependentes.compareTo(regra.getLimiteSuperior()) <= 0)
-						|| (regra.getLimiteSuperior() == null
-						&& numeroDependentes.compareTo(regra.getLimiteInferior()) >= 0))
-				.mapToInt(CriterioEntity::getPontuacao)
-				.sum();
-	}
-	
-	private Integer getTotalPontosRenda(BigDecimal rendaTotal, List<CriterioEntity> regras) {
-		return regras.stream()
-				.filter(regra -> regra.getTipo().equals(CriterioTypeEnum.RENDA))
-				.filter(regra -> rendaTotal.compareTo(regra.getLimiteSuperior()) <= 0
-						&& rendaTotal.compareTo(regra.getLimiteInferior()) >= 0)
-				.mapToInt(CriterioEntity::getPontuacao)
+		return pontuacaoStrategies.stream()
+				.mapToInt(strategy -> strategy.calcularPontuacao(pessoaEntities.stream().toList(), criterios))
 				.sum();
 	}
 }
